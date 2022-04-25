@@ -33,4 +33,5 @@ paddleocr.egg-info/
 # asial
 pretrain_models/
 trained_model/
+inference_model/
 log/

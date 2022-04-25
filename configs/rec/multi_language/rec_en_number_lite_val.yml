@@ -9,7 +9,7 @@ Global:
   eval_batch_step: [20000, 4000]
   # if pretrained_model is saved in static mode, load_static_weights must set to True
   cal_metric_during_train: True
-  pretrained_model: ./pretrain_models/en_number_mobile_v2.0_rec_train/best_accuracy
+  pretrained_model: 
   checkpoints: 
   save_inference_dir:
   use_visualdl: False
@@ -62,8 +62,8 @@ Metric:
 Train:
   dataset:
     name: SimpleDataSet
-    data_dir: /shared/data/apps/TextRecognitionDataGenerator
-    label_file_list: ["/shared/data/apps/TextRecognitionDataGenerator/text_rec_train.txt"]
+    data_dir: ./evaluation
+    label_file_list: ["./evaluation/test_en.txt"]
     transforms:
       - DecodeImage: # load image
           img_mode: BGR
@@ -83,8 +83,10 @@ Train:
 Eval:
   dataset:
     name: SimpleDataSet
-    data_dir: /shared/data/apps/TextRecognitionDataGenerator
-    label_file_list: ["/shared/data/apps/TextRecognitionDataGenerator/text_rec_test.txt"]
+    data_dir: ./evaluation
+    label_file_list: ["./evaluation/test_en.txt"]
+    # data_dir: /shared/data/apps/TextRecognitionDataGenerator
+    # label_file_list: ["/shared/data/apps/TextRecognitionDataGenerator/text_rec_test.txt"]
     transforms:
       - DecodeImage: # load image
           img_mode: BGR

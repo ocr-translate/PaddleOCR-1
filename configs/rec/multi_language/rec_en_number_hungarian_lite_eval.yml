@@ -3,19 +3,21 @@ Global:
   epoch_num: 1002
   log_smooth_window: 20
   print_batch_step: 10
-  save_model_dir: ./output/rec_en_number_lite
+  save_model_dir: ./output/rec_en_number_hungarian_lite
   save_epoch_step: 4000
-  # evaluation is run every 5000 iterations after the 4000th iteration
-  eval_batch_step: [20000, 4000]
+  # evaluation is run every 4000 iterations after the 20000th iteration
+  # eval_batch_step: [20000, 4000]
   # if pretrained_model is saved in static mode, load_static_weights must set to True
   cal_metric_during_train: True
   pretrained_model: ./pretrain_models/en_number_mobile_v2.0_rec_train/best_accuracy
-  checkpoints: 
+  # checkpoints: 
+  checkpoints: trained_model/english_hungary/3/latest
+  eval_batch_step: [0, 2000]
   save_inference_dir:
   use_visualdl: False
   infer_img:
   # for data or label process
-  character_dict_path: ppocr/utils/en_dict.txt
+  character_dict_path: ppocr/utils/dict/oscar_english_hungarian.txt
   max_text_length: 25
   infer_mode: False
   use_space_char: True
@@ -62,8 +64,8 @@ Metric:
 Train:
   dataset:
     name: SimpleDataSet
-    data_dir: /shared/data/apps/TextRecognitionDataGenerator
-    label_file_list: ["/shared/data/apps/TextRecognitionDataGenerator/text_rec_train.txt"]
+    data_dir: ./evaluation
+    label_file_list: ["./evaluation/test_en.txt"]
     transforms:
       - DecodeImage: # load image
           img_mode: BGR
@@ -71,31 +73,35 @@ Train:
       - RecAug: 
       - CTCLabelEncode: # Class handling label
       - RecResizeImg:
-          image_shape: [3, 32, 320]
+          image_shape: [3, 32, 640]
       - KeepKeys:
           keep_keys: ['image', 'label', 'length'] # dataloader will return list in this order
   loader:
     shuffle: True
     batch_size_per_card: 256
     drop_last: True
-    num_workers: 16
+    num_workers: 32
 
 Eval:
   dataset:
     name: SimpleDataSet
-    data_dir: /shared/data/apps/TextRecognitionDataGenerator
-    label_file_list: ["/shared/data/apps/TextRecognitionDataGenerator/text_rec_test.txt"]
+    data_dir: ./evaluation
+    label_file_list: ["./evaluation/test_en.txt"]
+    # data_dir: /shared/data/apps/TextRecognitionDataGenerator
+    # label_file_list: ["/shared/data/apps/TextRecognitionDataGenerator/text_rec_test.txt"]
     transforms:
       - DecodeImage: # load image
           img_mode: BGR
           channel_first: False
       - CTCLabelEncode: # Class handling label
       - RecResizeImg:
-          image_shape: [3, 32, 320]
+          image_shape: [3, 32, 480]
       - KeepKeys:
           keep_keys: ['image', 'label', 'length'] # dataloader will return list in this order
   loader:
     shuffle: False
     drop_last: False
-    batch_size_per_card: 256
+    # batch_size_per_card: 256
+    # num_workers: 32
+    batch_size_per_card: 180
     num_workers: 16

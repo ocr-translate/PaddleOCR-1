@@ -31,7 +31,6 @@ from ppocr.utils.save_load import load_model
 from ppocr.utils.utility import print_dict
 import tools.program as program
 
-
 def main():
     global_config = config['Global']
     # build dataloader

@@ -4,7 +4,7 @@ services:
   paddle:
     container_name: "cc-paddle-forked"
     image: paddleocr_paddle
-    shm_size: "8gb"
+    shm_size: "32gb"
     deploy:
       resources:
         reservations:

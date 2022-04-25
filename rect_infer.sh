@@ -1,3 +1,15 @@
+## inference
+# python3 tools/infer/predict_rec.py --image_dir="doc/imgs_oscar_en_hu" --rec_model_dir="inference_model/english_hungary/3_resumed" --rec_char_dict_path="ppocr/utils/dict/oscar_english_hungarian.txt"
+
+python3 tools/infer/predict_system.py \
+--image_dir="doc/imgs_oscar_en_hu" \
+--det_model_dir="inference_model/detect/"  \
+--rec_model_dir="inference_model/english_hungary/3_resumed/" \
+--cls_model_dir="inference_model/cls/" \
+--rec_char_dict_path="ppocr/utils/dict/oscar_english_hungarian.txt" \
+--use_angle_cls=False \
+--use_space_char=True \
+--use_gpu=True # if using GPU, remove this
 
 # output
 # python3 tools/infer_rec.py -c configs/rec/multi_language/rec_en_number_hungarian_lite_train.yml -o Global.pretrained_model=output/rec_en_number_hungarian_lite/best_accuracy Global.load_static_weights=false Global.infer_img=doc/imgs_oscar_en_hu
