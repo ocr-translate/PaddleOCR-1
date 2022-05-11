@@ -6,7 +6,7 @@ Global:
   save_model_dir: ./output/rec_en_number_hungarian_lite
   save_epoch_step: 4000
   # evaluation is run every 4000 iterations after the 20000th iteration
-  eval_batch_step: [20000, 2000]
+  eval_batch_step: [80000, 4000]
   checkpoints: 
   # if pretrained_model is saved in static mode, load_static_weights must set to True
   cal_metric_during_train: True
@@ -73,14 +73,14 @@ Train:
       - RecAug: 
       - CTCLabelEncode: # Class handling label
       - RecResizeImg:
-          image_shape: [3, 32, 480]
+          image_shape: [3, 32, 640]
       - KeepKeys:
           keep_keys: ['image', 'label', 'length'] # dataloader will return list in this order
   loader:
-    shuffle: True
-    batch_size_per_card: 60
+    shuffle: False
+    batch_size_per_card: 512
     drop_last: True
-    num_workers: 16
+    num_workers: 24
 
 Eval:
   dataset:
@@ -93,11 +93,11 @@ Eval:
           channel_first: False
       - CTCLabelEncode: # Class handling label
       - RecResizeImg:
-          image_shape: [3, 32, 480]
+          image_shape: [3, 32, 640]
       - KeepKeys:
           keep_keys: ['image', 'label', 'length'] # dataloader will return list in this order
   loader:
     shuffle: False
     drop_last: False
-    batch_size_per_card: 60
-    num_workers: 16
+    batch_size_per_card: 512
+    num_workers: 24
