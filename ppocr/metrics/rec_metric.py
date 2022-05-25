@@ -38,6 +38,9 @@ class RecMetric(object):
             # don't remove spaces for comparison
             # pred = pred.replace(" ", "")
             # target = target.replace(" ", "")
+            # strip space
+            pred = pred.strip()
+            target = target.strip()
             if self.is_filter:
                 pred = self._normalize_text(pred)
                 target = self._normalize_text(target)

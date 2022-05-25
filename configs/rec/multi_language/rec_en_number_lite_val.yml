@@ -84,7 +84,7 @@ Eval:
   dataset:
     name: SimpleDataSet
     data_dir: ./evaluation
-    label_file_list: ["./evaluation/test_en.txt"]
+    label_file_list: ["./evaluation/english-single-line-barna.txt"]
     # data_dir: /shared/data/apps/TextRecognitionDataGenerator
     # label_file_list: ["/shared/data/apps/TextRecognitionDataGenerator/text_rec_test.txt"]
     transforms:

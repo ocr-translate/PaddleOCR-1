@@ -6,13 +6,13 @@ Global:
   save_model_dir: ./output/rec_en_number_hungarian_lite
   save_epoch_step: 4000
   # evaluation is run every 4000 iterations after the 20000th iteration
-  eval_batch_step: [80000, 4000]
-  checkpoints: 
+  # eval_batch_step: [200000, 20000]
+  # checkpoints: 
   # if pretrained_model is saved in static mode, load_static_weights must set to True
   cal_metric_during_train: True
   pretrained_model: ./pretrain_models/en_number_mobile_v2.0_rec_train/best_accuracy
-  # checkpoints: output/rec_en_number_hungarian_lite/latest
-  # eval_batch_step: [20000, 2000]
+  checkpoints: output/rec_en_number_hungarian_lite/latest
+  eval_batch_step: [200000, 20000]
   save_inference_dir:
   use_visualdl: False
   infer_img:
@@ -73,7 +73,7 @@ Train:
       - RecAug: 
       - CTCLabelEncode: # Class handling label
       - RecResizeImg:
-          image_shape: [3, 32, 640]
+          image_shape: [3, 32, 576]
       - KeepKeys:
           keep_keys: ['image', 'label', 'length'] # dataloader will return list in this order
   loader:
@@ -93,7 +93,7 @@ Eval:
           channel_first: False
       - CTCLabelEncode: # Class handling label
       - RecResizeImg:
-          image_shape: [3, 32, 640]
+          image_shape: [3, 32, 576]
       - KeepKeys:
           keep_keys: ['image', 'label', 'length'] # dataloader will return list in this order
   loader:
