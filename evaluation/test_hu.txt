@@ -1,0 +1,17 @@
+images_hu/01.png	(Magyar Újságok)
+images_hu/02.png	Észak-Magyarország (Miskolc)
+images_hu/03.png	Új Egyenlöség (Budapest)
+images_hu/04.png	Új Kelet
+images_hu/05.png	168 Óra
+images_hu/06.png	Délmagyarország
+images_hu/07.png	Nincs találat
+images_hu/08.png	A keresett oldal nem található.
+images_hu/09.png	Kék hírek
+images_hu/10.png	Tündérszépek
+images_hu/11.png	Húsvéti Milliók
+images_hu/12.png	Törzshely 2022
+images_hu/13.png	Még ilyet!
+images_hu/14.png	MEZŐKÖVESD
+images_hu/15.png	LEGFRISSEBB
+images_hu/16.png	Az ezüst lett a Vegyészé, Gólképtelen a
+images_hu/17.png	Mezőkövesd - Minden, amiről egy igazi

@@ -39,6 +39,8 @@ class RecMetric(object):
         all_num = 0
         norm_edit_dis = 0.0
         for (pred, pred_conf), (target, _) in zip(preds, labels):
+            pred = pred.strip()
+            target = target.strip()
             if self.ignore_space:
                 pred = pred.replace(" ", "")
                 target = target.replace(" ", "")
@@ -47,8 +49,11 @@ class RecMetric(object):
                 target = self._normalize_text(target)
             norm_edit_dis += Levenshtein.distance(pred, target) / max(
                 len(pred), len(target), 1)
-            if pred == target:
+            if pred.lower() == target.lower():
                 correct_num += 1
+                # print("O:" + target + "-->" + pred)
+            # else:
+            #     print(target + "-->" + pred)
             all_num += 1
         self.correct_num += correct_num
         self.all_num += all_num
